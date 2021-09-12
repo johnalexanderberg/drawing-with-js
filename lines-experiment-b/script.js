@@ -201,9 +201,9 @@ const handleClick = () => {
 
         shapes[i].rotation = angle + shapeParams.rotationFactor*50 * i*shapeParams.indexFactor;
 
-    // const rotationFactor = Math.random-positions();
-    // const indexFactor = Math.random-positions()*2;
-    // const rotationGroupFactor = Math.random-positions();
+    // const rotationFactor = Math.random-placement();
+    // const indexFactor = Math.random-placement()*2;
+    // const rotationGroupFactor = Math.random-placement();
     // rotationSpeed = rotationFactor/1000;
     // rotationSpeedGroup = rotationGroupFactor/1000;
     //

@@ -46,14 +46,14 @@ function mapAndClamp(value, low1, high1, low2, high2) {
 }
 
 // Random number within range
-// Generates a random-placement number between min and max rounded
+// Generates a random number between min and max rounded
 // e.g. randomNumber(10, 20) could return 17.12335
 function randomNumber(min, max) {
   return Math.random() * (max - min) + min
 }
 
 // Random number within range
-// Generates a random-placement number between min and max rounded
+// Generates a random number between min and max rounded
 // e.g. randomRoundNumber(10, 20) could return 17
 function randomRoundNumber(min, max) {
   return Math.round(randomNumber(min, max))

@@ -95,3 +95,24 @@ background-color: #bcdffd;;
     width: 500px;
     height: 500px;
 }
+
+#container {
+    transition: 1s ease-out;
+}
+
+path {
+    transition: fill 1s ease-in;
+}
+.random-placement__container{
+    width: 100vw;
+    height: 100vh;
+}
+
+.random-placement__frame {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    height: 500px;
+}
