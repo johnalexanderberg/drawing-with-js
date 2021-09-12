@@ -33,8 +33,17 @@ a {
 .lines-experiment-a__container{
     width: 100vw;
     height: 100vh;
-    background-color: #2e312f;
+    background-color: #efefef;
 }
+.lines-experiment-a__frame{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    height: 500px;
+}
+
 
 
 .spinning-square__container{
@@ -55,4 +64,34 @@ a {
     left: 50%;
     position: fixed;
     transform: translate(-50%, -50%);
+}
+
+.looping-square__container{
+    width: 100vw;
+    height: 100vh;
+    background-color: #f9d2cd;
+}
+
+.looping-square__frame{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    height: 500px;
+}
+
+.zipper__container{
+    width: 100vw;
+    height: 100vh;
+background-color: #bcdffd;;
+}
+
+.zipper__frame {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    height: 500px;
 }

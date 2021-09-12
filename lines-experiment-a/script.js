@@ -9,28 +9,33 @@ const two = new Two(params);
 
 two.appendTo(container);
 
-const numberOfShapes = 512;
+let numberOfShapes = 512;
 const plotRadius = 80;
 const shapes = [];
 shapes.length = numberOfShapes;
 let rotationSpeed = 0.001;
 let rotationSpeedGroup = 0.002;
 
-for (let i = 0; i < numberOfShapes; i++) {
 
-    const angle = (Math.PI * 2) * i / numberOfShapes;
-    const x = plotRadius * Math.cos(angle);
-    const y = plotRadius * Math.sin(angle);
-    const width = 100;
-    const height = 1;
-    const shape = two.makeRectangle(x, y, width/4 * ((i%4)*4 + 0.2)-50,height);
-    shape.fill = '#31f9b3';
+function drawShape() {
+    for (let i = 0; i < numberOfShapes; i++) {
 
-    shape.opacity = ((i % 12) + 1) / 12;
-    shape.noStroke();
-    shapes[i] = shape;
-    shape.rotation = angle + 2 * i;
+        const angle = (Math.PI * 2) * i / numberOfShapes;
+        const x = plotRadius * Math.cos(angle);
+        const y = plotRadius * Math.sin(angle);
+        const width = 100;
+        const height = 1;
+        const shape = two.makeRectangle(x, y, width / 4 * ((i % 4) * 4 + 0.2) - 50, height);
+        shape.fill = '#29262a';
+
+        shape.opacity = ((i % 12) + 1) / 12;
+        shape.noStroke();
+        shapes[i] = shape;
+        shape.rotation = angle + 2 * i;
+    }
 }
+
+drawShape();
 
 const group = two.makeGroup(shapes);
 group.translation.set(250, 250);
@@ -60,9 +65,9 @@ const handleClick = () => {
 
         shapes[i].rotation = angle + random * 50 * i * random2;
 
-
     }
     console.log('clicked');
+
 };
 
 
