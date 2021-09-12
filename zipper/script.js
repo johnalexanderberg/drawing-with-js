@@ -37,6 +37,7 @@ two.bind("update", function (frameCount) {
   let variation = Math.round((frameCount % totalDuration) / totalDuration)
 
 
+
   //calculate current frame & timeline (range 0-1)
 
   const currentFrame = frameCount % loopDuration
