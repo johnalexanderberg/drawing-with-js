@@ -53,7 +53,6 @@ h1 {
     left: 50%;
     font-size: 5rem;
     transform: translate(-50%, -50%);
-    mix-blend-mode: screen;
 }
 
 #scroll-4, #scroll-5, #scroll-6{
