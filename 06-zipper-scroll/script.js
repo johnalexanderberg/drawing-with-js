@@ -147,7 +147,7 @@ const handleScroll = () => {
         scrollPosition = mapAndClamp(actualScroll, 0.69, 0.9, 0.69, 0.8)
 
     } else if (actualScroll <= 1){
-        scrollPosition = mapAndClamp(actualScroll, 0.9, 1, 0.8, 1)
+        scrollPosition = mapAndClamp(actualScroll, 0.8, 1, 0.8, 1)
         console.log('scroll: ', actualScroll)
         console.log('timeline: ', scrollPosition)
     }
