@@ -16,7 +16,7 @@ shape.noStroke();
 
 
 const onUpdate = () => {
-    shape.rotation += 0.05;
+    shape.rotation += 0.02;
 }
 // lets listen for any update, any frame 60fps
 two.bind('update', onUpdate)

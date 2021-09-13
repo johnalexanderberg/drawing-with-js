@@ -164,9 +164,9 @@ for(let i = 0; i < numberOfShapes; i++){
     const width = 500;
     const height = 1;
 const shape = two.makeArrow(x, y, width, height);
-    shape.fill = '#31f9b3';
+    shape.fill = '#000000';
     if ((i/12)%2 > 1){
-        shape.fill = '#6a49ff';
+        shape.fill = 'rgba(26,26,25,0.29)';
     }
     shape.opacity = ((i%12)+1)/12;
     shape.noStroke();

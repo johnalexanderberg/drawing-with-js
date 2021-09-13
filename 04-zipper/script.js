@@ -1,4 +1,4 @@
-const container = document.querySelector("section")
+const frame = document.querySelector(".frame")
 
 const params = { 
   width: 500, 
@@ -6,7 +6,7 @@ const params = {
 }
 
 const two = new Two(params)
-two.appendTo(container)
+two.appendTo(frame)
 
 // config for our animation
 const numberOfShapes = 25
@@ -80,4 +80,7 @@ two.bind("update", function (frameCount) {
   })
 
 })
+
+
+two.play()
 

@@ -24,7 +24,7 @@ function spawnShapes() {
         const width = params.width / numberOfShapes;
         const height = params.width / numberOfShapes;
         const shape = two.makeRectangle(x, y, width, height);
-        shape.fill = '#31f9b3';
+        shape.fill = '#f9bc31';
         shape.noStroke();
         shapes[i] = shape;
         shape.rotation = angle + 2 * i;
