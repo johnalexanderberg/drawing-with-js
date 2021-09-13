@@ -1,47 +1,42 @@
 const container = document.querySelector("section")
+
+
+const animatedTexts = [];
 const textOne = document.querySelector('#scroll-1')
 const textTwo = document.querySelector('#scroll-2')
 const textThree = document.querySelector('#scroll-3')
 const textFour = document.querySelector('#scroll-4')
 const textFive = document.querySelector('#scroll-5')
 const textSix = document.querySelector('#scroll-6')
+const textSeven = document.querySelector('#scroll-7')
+const textEight = document.querySelector('#scroll-8')
+const textNine = document.querySelector('#scroll-9')
 
-textOne.data = {
-    initialYPos: 50
-}
-textTwo.data = {
-    initialYPos: 50
-}
-textThree.data = {
-    initialYPos: 50
-}
-textFour.data = {
-    initialXPos: 50,
-    initialYPos: 50
-}
-textFive.data = {
-    initialXPos: 50,
-    initialYPos: 50
-}
-textSix.data = {
-    initialXPos: 50,
-    initialYPos: 50
-}
+animatedTexts.push(textOne)
+animatedTexts.push(textTwo)
+animatedTexts.push(textThree)
+animatedTexts.push(textFour)
+animatedTexts.push(textFive)
+animatedTexts.push(textSix)
+animatedTexts.push(textSeven)
+animatedTexts.push(textEight)
+animatedTexts.push(textNine)
 
-textOne.style.top = `${textOne.data.initialYPos}` + '%';
+animatedTexts.forEach((text, i) => {
 
-textTwo.style.top = `${textTwo.data.initialYPos}` + '%';
+    text.data = {
+        initialXPos: 50,
+        initialYPos: 50
+    }
 
-textThree.style.top = `${textThree.data.initialYPos}` + '%';
+    if(i > 5){
+        text.data.initialYPos = 30 + ((i-5) * 20)
+    }
 
-textFour.style.top = `${textFour.data.initialYPos}` + '%';
-textFour.style.left = `${textFour.data.initialXPos}` + '%';
+    text.style.left = `${text.data.initialXPos}` + '%';
+    text.style.top = `${text.data.initialYPos}` + '%';
 
-textFive.style.top = `${textFive.data.initialYPos}` + '%';
-textFive.style.left = `${textFive.data.initialXPos}` + '%';
-
-textSix.style.top = `${textSix.data.initialYPos}` + '%';
-textSix.style.left = `${textSix.data.initialXPos}` + '%';
+})
 
 
 
@@ -58,6 +53,7 @@ const scrollMax = document.querySelector('.container--scroll').clientHeight - wi
 console.log(scrollMax)
 
 let scrollPosition = 0;
+let actualScroll = 0;
 
 const numberOfShapes = 25
 const variations = 2;
@@ -135,8 +131,26 @@ two.bind("update", function (frameCount) {
 const handleScroll = () => {
 
 //map scroll position to a value between 0(top) - 1(bottom)
-    scrollPosition = mapAndClamp(window.pageYOffset, 0, scrollMax, 0, 1)
-    console.log(scrollPosition)
+
+    actualScroll = mapAndClamp(window.pageYOffset, 0, scrollMax, 0, 1)
+
+    //scene 1
+    if (actualScroll < 0.69) {
+
+        scrollPosition = actualScroll
+        console.log('scroll: ', actualScroll)
+        console.log('timeline: ', scrollPosition)
+    } else if (actualScroll < 0.9)
+    {
+        console.log('scroll: ', actualScroll)
+        console.log('timeline: ', scrollPosition)
+        scrollPosition = mapAndClamp(actualScroll, 0.69, 0.9, 0.69, 0.8)
+
+    } else if (actualScroll <= 1){
+        scrollPosition = mapAndClamp(actualScroll, 0.9, 1, 0.8, 1)
+        console.log('scroll: ', actualScroll)
+        console.log('timeline: ', scrollPosition)
+    }
 
 
     if (scrollPosition < 0.5) {
@@ -146,7 +160,7 @@ const handleScroll = () => {
     }
 
 //Text 2:
-if (scrollPosition > 0.1 && scrollPosition < 0.4){
+if (scrollPosition > 0.05 && scrollPosition < 0.5){
     textTwo.style.display = 'block';
 }
 else {
@@ -173,14 +187,30 @@ else {
         textSix.style.display = 'none';
     }
 
-
+    //Text 4-6 (from left)
+    if (scrollPosition > 0.7){
+        textSeven.style.display = 'block';
+        textEight.style.display = 'block';
+        textNine.style.display = 'block';
+    }
+    else {
+        textSeven.style.display = 'none';
+        textEight.style.display = 'none';
+        textNine.style.display = 'none';
+    }
 
     textOne.style.top = `${textOne.data.initialYPos + easeInOutCubic((scrollPosition) * -50)}` + '%';
-    textTwo.style.top = `${textTwo.data.initialYPos + easeInOutCubic((scrollPosition-0.25) * -30)}` + '%';
+    textTwo.style.top = `${textTwo.data.initialYPos + ((scrollPosition*4-0.25) * -21)}` + '%';
     textThree.style.top = `${textThree.data.initialYPos + (easeInOutCubic((scrollPosition - 0.5) * -40))}` + '%';
+
     textFour.style.left = `${textFour.data.initialXPos + -(easeInOutCubic((scrollPosition - 0.69) * -100))}` + '%';
     textFive.style.left = `${textFive.data.initialXPos + -(easeInOutCubic((scrollPosition - 0.74) * -100))}` + '%';
-    textSix.style.left = `${textSix.data.initialXPos + -(easeInOutCubic((scrollPosition - 0.79) * -150))}` + '%';
+    textSix.style.left = `${textSix.data.initialXPos + -(easeInOutCubic((scrollPosition - 0.79) * -100))}` + '%';
+
+    textSeven.style.left = `${textSeven.data.initialXPos + (easeInOutCubic((scrollPosition - 1) * -30))}` + '%';
+    textEight.style.left = `${textEight.data.initialXPos + (easeInOutCubic((scrollPosition - 1) * -40))}` + '%';
+    textNine.style.left = `${textNine.data.initialXPos + (easeInOutCubic((scrollPosition - 1) * -50))}` + '%';
+
 }
 
 document.addEventListener('scroll', handleScroll)
