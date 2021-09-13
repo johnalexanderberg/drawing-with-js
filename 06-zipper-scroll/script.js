@@ -135,19 +135,19 @@ const handleScroll = () => {
     actualScroll = mapAndClamp(window.pageYOffset, 0, scrollMax, 0, 1)
 
     //scene 1
-    if (actualScroll < 0.69) {
+    if (actualScroll <= 0.69) {
 
         scrollPosition = actualScroll
         console.log('scroll: ', actualScroll)
         console.log('timeline: ', scrollPosition)
-    } else if (actualScroll < 0.9)
+    } else if (actualScroll <= 0.95)
     {
         console.log('scroll: ', actualScroll)
         console.log('timeline: ', scrollPosition)
-        scrollPosition = mapAndClamp(actualScroll, 0.69, 0.9, 0.69, 0.8)
+        scrollPosition = mapAndClamp(actualScroll, 0.69, 0.95, 0.69, 0.8)
 
     } else if (actualScroll <= 1){
-        scrollPosition = mapAndClamp(actualScroll, 0.8, 1, 0.8, 1)
+        scrollPosition = mapAndClamp(actualScroll, 0.95, 1, 0.8, 1)
         console.log('scroll: ', actualScroll)
         console.log('timeline: ', scrollPosition)
     }
