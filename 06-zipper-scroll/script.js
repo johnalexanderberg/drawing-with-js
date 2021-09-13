@@ -52,7 +52,7 @@ two.appendTo(container)
 const scrollMax = document.querySelector('.container--scroll').clientHeight - window.innerHeight
 console.log(scrollMax)
 
-let scrollPosition = 0;
+let timeLine = 0;
 let actualScroll = 0;
 
 const numberOfShapes = 25
@@ -83,7 +83,7 @@ let t = 0;
 two.bind("update", function (frameCount) {
 
 
-    t = (scrollPosition * 2)
+    t = (timeLine * 2)
 
     if (t > 1) {
         t = t - 1;
@@ -130,39 +130,40 @@ two.bind("update", function (frameCount) {
 
 const handleScroll = () => {
 
-//map scroll position to a value between 0(top) - 1(bottom)
-
-    actualScroll = mapAndClamp(window.pageYOffset, 0, scrollMax, 0, 1)
-
-    //scene 1
-    if (actualScroll > 0.15 && actualScroll <= 0.5) {
-
-
-        scrollPosition = mapAndClamp(actualScroll, 0.15, 0.5, 0.15, 0.8)
-        console.log('scroll: ', actualScroll)
-        console.log('timeline: ', scrollPosition)
-
-    } else if (actualScroll > 0.5 && actualScroll <= 0.95)
-    {
-        scrollPosition = mapAndClamp(actualScroll, 0.8, 0.95, 0.8, 0.8)
-        console.log('scroll: ', actualScroll)
-        console.log('timeline: ', scrollPosition)
-
-    } else if (actualScroll > 0.95 && actualScroll <= 1){
-        scrollPosition = mapAndClamp(actualScroll, 0.95, 1, 0.8, 1)
-        console.log('scroll: ', actualScroll)
-        console.log('timeline: ', scrollPosition)
-    }
-
-
-    if (scrollPosition < 0.5) {
+    if (timeLine < 0.5) {
         variation = 0;
     } else {
         variation = 1;
     }
 
+//map scroll position to a value between 0(top) - 1(bottom)
+
+    actualScroll = mapAndClamp(window.pageYOffset, 0, scrollMax, 0, 1)
+
+    if(actualScroll < 0.02){
+
+    timeLine = mapAndClamp(actualScroll, 0, 1, 0, 1)
+    } else if (actualScroll < 0.2) {
+
+        timeLine = mapAndClamp(actualScroll, 0.02, 0.2, 0.02, 0.5)
+
+
+    } else if (actualScroll < 0.65)
+    {
+        timeLine = mapAndClamp(actualScroll, 0.2, 0.65, 0.5, 0.8)
+
+
+    } else if (actualScroll < 1.1){
+        timeLine = mapAndClamp(actualScroll, 0.65, 1, 0.8, 1)
+
+    }
+
+    console.log('scrollPos: ', actualScroll)
+    console.log('timeline: ', timeLine)
+
+
 //Text 2:
-if (scrollPosition > 0.05 && scrollPosition < 0.5){
+if (timeLine > 0.05 && timeLine < 0.4){
     textTwo.style.display = 'block';
 }
 else {
@@ -170,7 +171,7 @@ else {
 }
 
 //Text 3:
-    if (scrollPosition > 0.4 && scrollPosition < 0.6){
+    if (timeLine > 0.4 && timeLine < 0.6){
         textThree.style.display = 'block';
     }
     else {
@@ -178,7 +179,7 @@ else {
     }
 
     //Text 4-6 (from left)
-    if (scrollPosition > 0.6 && scrollPosition < 0.9){
+    if (timeLine > 0.6 && timeLine < 0.9){
         textFour.style.display = 'block';
         textFive.style.display = 'block';
         textSix.style.display = 'block';
@@ -190,7 +191,7 @@ else {
     }
 
     //Text 4-6 (from left)
-    if (scrollPosition > 0.7){
+    if (timeLine > 0.7){
         textSeven.style.display = 'block';
         textEight.style.display = 'block';
         textNine.style.display = 'block';
@@ -201,17 +202,17 @@ else {
         textNine.style.display = 'none';
     }
 
-    textOne.style.top = `${textOne.data.initialYPos + easeInOutCubic((scrollPosition) * -50)}` + '%';
-    textTwo.style.top = `${textTwo.data.initialYPos + ((scrollPosition*4-0.25) * -21)}` + '%';
-    textThree.style.top = `${textThree.data.initialYPos + (easeInOutCubic((scrollPosition - 0.5) * -40))}` + '%';
+    textOne.style.top = `${textOne.data.initialYPos + easeInOutCubic((timeLine) * -50)}` + '%';
+    textTwo.style.top = `${textTwo.data.initialYPos + easeInOutCubic((timeLine-0.25) * -50)}` + '%';
+    textThree.style.top = `${textThree.data.initialYPos + (easeInOutCubic((timeLine - 0.5) * -40))}` + '%';
 
-    textFour.style.left = `${textFour.data.initialXPos + -(easeInOutCubic((scrollPosition - 0.69) * -100))}` + '%';
-    textFive.style.left = `${textFive.data.initialXPos + -(easeInOutCubic((scrollPosition - 0.74) * -100))}` + '%';
-    textSix.style.left = `${textSix.data.initialXPos + -(easeInOutCubic((scrollPosition - 0.79) * -100))}` + '%';
+    textFour.style.left = `${textFour.data.initialXPos + -(easeInOutCubic((timeLine - 0.68) * -100))}` + '%';
+    textFive.style.left = `${textFive.data.initialXPos + -(easeInOutCubic((timeLine - 0.74) * -100))}` + '%';
+    textSix.style.left = `${textSix.data.initialXPos + -(easeInOutCubic((timeLine - 0.79) * -100))}` + '%';
 
-    textSeven.style.left = `${textSeven.data.initialXPos + (easeInOutCubic((scrollPosition - 1) * -30))}` + '%';
-    textEight.style.left = `${textEight.data.initialXPos + (easeInOutCubic((scrollPosition - 1) * -40))}` + '%';
-    textNine.style.left = `${textNine.data.initialXPos + (easeInOutCubic((scrollPosition - 1) * -50))}` + '%';
+    textSeven.style.left = `${textSeven.data.initialXPos + (easeInOutCubic((timeLine - 1) * -30))}` + '%';
+    textEight.style.left = `${textEight.data.initialXPos + (easeInOutCubic((timeLine - 1) * -40))}` + '%';
+    textNine.style.left = `${textNine.data.initialXPos + (easeInOutCubic((timeLine - 1) * -50))}` + '%';
 
 }
 
