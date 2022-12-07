@@ -1,4 +1,4 @@
-# creativecoding excercises, drawing with javascript.
+# drawing with js excercises, drawing with javascript.
 
 
 https://johnalexanderberg.github.io/creativecoding/
